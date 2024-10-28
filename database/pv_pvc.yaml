@@ -9,7 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /data/postgres  # This path is on the host node
+    path: /var/lib/postgresql/data  # Existing path on the host node
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard-rwo 
 ---
