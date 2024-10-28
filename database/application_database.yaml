@@ -11,7 +11,7 @@ spec:
     path: ./database  # Path to database resources
   destination:
     server: https://kubernetes.default.svc
-    namespace: database  # Specify the database namespace
+    namespace: postgres  # Specify the database namespace
   syncPolicy:
     automated:
       prune: true
