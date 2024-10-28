@@ -22,4 +22,14 @@ spec:
             - containerPort: 5000
           env:
             - name: DATABASE_URL
-              value: "postgresql://postgres:password@postgres.postgres.svc.cluster.local:5432/mydatabase"
+              value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres.postgres.svc.cluster.local:5432/mydatabase"
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres-password
