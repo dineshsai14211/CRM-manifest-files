@@ -11,6 +11,7 @@ spec:
   hostPath:
     path: /data/postgres  # This path is on the host node
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard-rwo 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -24,3 +25,4 @@ spec:
     requests:
       storage: 1Gi
   volumeName: postgres-pv
+
