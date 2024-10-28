@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-flask-app
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/dineshsai14211/CRM-manifest-files  # Replace with your repository URL
+      targetRevision: main
+      path: ./  # Path for application-related manifest files in the root folder
+      destination:
+        namespace: backend
+    - repoURL: https://github.com/dineshsai14211/CRM-manifest-files
+      targetRevision: main
+      path: ./database  # Path for database-related manifest files
+      destination:
+        namespace: database
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+  revisionHistoryLimit: 5

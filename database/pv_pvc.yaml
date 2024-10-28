@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+  namespace: postgres
+spec:
+  capacity:
+    storage: 1Gi  # Adjust size as needed
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/postgres  # This path is on the host node
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: postgres
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: postgres-pv
