@@ -4,6 +4,7 @@ metadata:
   name: postgres
   namespace: postgres
 spec:
+  clusterIP: None
   ports:
     - port: 5432
       targetPort: 5432
